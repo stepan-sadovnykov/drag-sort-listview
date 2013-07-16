@@ -2375,7 +2375,10 @@ public class DragSortListView extends ListView {
         }
         if ((mDragFlags & DRAG_NEG_Y) == 0) {
             if (firstPos <= mSrcPos) {
-                topLimit = Math.max(getChildAt(mSrcPos - firstPos).getTop(), topLimit);
+                View child = getChildAt(mSrcPos - firstPos);
+                if (null != child) {
+                    topLimit = Math.max(child.getTop(), topLimit);
+                }
             }
         }
         // bottom limit is top of first footer View or
